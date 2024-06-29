@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+
+{% block head %}
+<h1 class = "display-2 text-center">Update Task</h1>
+{% endblock %}
+
+{% block body %}
+<p class = "display-5 text-center">Update your task</p>
+
+<form class = "form text-center" action = "/update/{{task.id}}" method = "post" target = "_self">
+    <input type = "text" id = "content" name = "content" value = "{{task.content}}">
+    <input type = "submit">
+</form>
+{% endblock %}

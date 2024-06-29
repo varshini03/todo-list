@@ -1,0 +1,61 @@
+{% extends 'index.html' %}
+
+{% block head %}
+    <h1 class = "text-center display-2">Task Master</h1>
+{% endblock %}
+{% block body %}
+    <div class = "content">
+        {% if task|length < 1 %}
+        <h4 class = "display-5 text-center">no tasks available, create one below!</h1>
+        {% else %}
+        <p class = "text-center display-5">Keep track of your <i>tasks</i> here</p>
+        <br>
+        <table class = "table table-bordered table-striped table-hover">
+            <thead class = "thead-light table-">
+            <tr>
+                <th>Task</th>
+                <th>Added</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody class = "table-sm">
+            {% for t in task %}
+            <tr>
+                <td>{{t.content}}</td>
+                <td>{{t.date_created}}</td>
+                <td>
+                    <a href = "/update/{{t.id}}">Update</a>
+                    <br>
+                    <a href = "/delete/{{t.id}}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+    </tbody>
+    </table>
+    {% endif %}
+
+    <br>
+    <form action = "/" method = 'post' target = "_self" class = "text-center">
+        <label for = task>Task: </label>
+        <input type = "text" id = "task" name = "task" value = "enter text here" onfocus='{this.value="";}'>
+        <input type = "submit">
+        <br>
+        <!--
+        <input type = "radio" name = "choices" id = "eat" value = "eat">
+        <label for = "eat">eat</label>
+        <input type = "radio" name = "choices" id = "sleep" value = "sleep">
+        <label for = "sleep">sleep</label>
+        <input type = "radio" name = "choices" id = "breathe" value = "breathe">
+        <label for = "breathe">breathe</label>
+        <br>
+
+        <input type = "checkbox" name = "eat1" id = "eat1" value = "eat1">
+        <label for = "eat1">eat</label>
+        <input type = "checkbox" name = "sleep1" id = "sleep1" value = "sleep1">
+        <label for = "sleep1">sleep</label>
+        <input type = "checkbox" name = "breathe1" id = "breathe1" value = "breathe1">
+        <label for = "breathe1">breathe</label>
+    -->
+    </form>
+</div>
+{% endblock %}
